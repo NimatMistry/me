@@ -3,3 +3,4 @@ Need more battery
 setting up git up the dev environment takes a while 
 everything else is pretty ohkay 
 remember to fix remote update next week 
+finish all the stuff before commenting and pushing 
