@@ -5,19 +5,19 @@
     ],
     "machine": "AMD64",
     "os_name": "nt",
-    "platform": "Windows-10-10.0.17134-SP0",
-    "processor": "Intel64 Family 6 Model 158 Stepping 9, GenuineIntel",
+    "platform": "Windows-10-10.0.17763-SP0",
+    "processor": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel",
     "release": "10",
     "system": "Windows",
     "uname": [
         "Windows",
-        "Hugh",
+        "DESKTOP-9R0V6GK",
         "10",
-        "10.0.17134",
+        "10.0.17763",
         "AMD64",
-        "Intel64 Family 6 Model 158 Stepping 9, GenuineIntel"
+        "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel"
     ],
-    "version": "10.0.17134",
+    "version": "10.0.17763",
     "python_build": [
         "default",
         "Mar 27 2019 17:13:21"
@@ -30,5 +30,5 @@
         "7",
         "3"
     ],
-    "cpu_count": 8
+    "cpu_count": 12
 }
