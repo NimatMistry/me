@@ -253,7 +253,22 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    return None
+
+    my_list = []
+    rows = 5
+
+    for i in range(rows):
+        star = int(i * 2 + 1)
+        space = int((rows * 2 - star) / 2)
+        my_list.append([])
+        for j in range(space):
+            my_list[i].append(' ')
+        for k in range(star):
+            my_list[i].append('*')
+        for m in range(space):
+            my_list[i].append(' ')
+
+    return my_list
 
 
 def lp(some_kind_of_list, exercise_name):
@@ -297,3 +312,4 @@ if __name__ == "__main__":
     lp(loops_5(), "loops_5")
     lp(loops_6(), "loops_6")
     lp(loops_7(), "loops_7")
+    

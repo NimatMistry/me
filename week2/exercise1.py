@@ -41,3 +41,4 @@ def usefulFunction():
 
 # I think this call the ealier defined usefulFunction and therefor should print the information such as - system, nodem reslease, version, machine, and processor
 usefulFunction() # It printed the information - system, nodem reslease, version, machine, and processor
+
