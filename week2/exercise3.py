@@ -187,7 +187,16 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    return None
+
+    my_list = []
+
+    for i in range(10):
+        my_list.append([])
+        for j in range(5):
+           my_list[i].append("(i" + str(i) + "," + "j" + str(j) + ")")
+
+
+    return my_list
 
 
 def loops_6():
