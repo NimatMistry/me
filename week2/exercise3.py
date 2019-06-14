@@ -98,7 +98,7 @@ def loops_2():
     my_list = []
 
     for i in range(10):
-        my_list.append([i])
+        my_list.append([])
         for j in range(10):
             my_list[i].append('*')
     
