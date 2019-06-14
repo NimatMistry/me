@@ -193,10 +193,11 @@ def loops_5():
     for i in range(10):
         my_list.append([])
         for j in range(5):
-           my_list[i].append("(i" + str(i) + "," + "j" + str(j) + ")")
+           my_list[i].append(str("(i" + str(i) + ", " + "j" + str(j) + ")"))
 
 
     return my_list
+
 
 
 def loops_6():
