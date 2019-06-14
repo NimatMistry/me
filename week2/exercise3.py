@@ -220,7 +220,16 @@ def loops_6():
     You can use a variable.
     TIP: look out for the starting condition.
     """
-    return None
+
+    my_list = []
+
+    for i in range(10):
+        my_list.append([])
+        for j in range(i + 1):
+            my_list[i].append(str(j))
+
+
+    return my_list
 
 
 def loops_7():
