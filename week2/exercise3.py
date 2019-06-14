@@ -129,9 +129,9 @@ def loops_3():
     my_list  = []
 
     for i in range(10):
-        my_list.append([i])
+        my_list.append([])
         for j in range(10):
-            my_list[i].append(i)
+            my_list[i].append(str(i))
     
     return my_list
 
@@ -153,7 +153,14 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    return None
+    my_list = []
+
+    for i in range(10):
+        my_list.append([])
+        for j in range(10):
+            my_list[i].append(str(j))
+
+    return my_list
 
 
 def loops_5():
