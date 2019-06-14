@@ -9,7 +9,7 @@ See example for first print statement
 import platform
 
 # I think this will print "hello! Let's get started" by calling the print function.
-print("hello! Let's get started")  # it printed "hello! Let's get started"
+print("hello! Let's get started")  # it printed hello! Let's get started
 
 # I think this is list 
 some_words = ['what', 'does', 'this', 'line', 'do', '?']
