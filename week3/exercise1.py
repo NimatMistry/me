@@ -94,6 +94,7 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
+    
     is_num = False
     num = input('Please enter a number')
 
