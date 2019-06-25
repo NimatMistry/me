@@ -94,16 +94,14 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    
+    #print(message)
     is_num = False
     num = input('Please enter a number')
-
     while is_num == False:
         try:
             float(num)
-            print(num)
             is_num = True
-        except ValueError:
+        except Exception:
             num = input('please guess a number')
 
     return num
@@ -119,8 +117,20 @@ def super_asker(low, high):
     """
 
     user_input = input('Please enter a number')
+
     num = not_number_rejector(user_input)
-    final_num = stubborn_asker(low, high)
+
+    guess = False
+
+    while guess == False:
+        if int(num) < high and int(num) > low:
+            #print('Well done, you got it')
+            guess = True
+        else:
+            num = not_number_rejector(user_input)
+
+    return num
+    
 
 
 
