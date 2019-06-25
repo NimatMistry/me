@@ -77,13 +77,13 @@ def stubborn_asker(low, high):
 
     guess = False
     num = int(input('Please enter a number'))
-
     while guess == False:
         if num < high and num > low:
             #print('Well done, you got it')
             guess = True
         else:
             num = int(input('please guess another number'))
+
     return num
 
 
@@ -94,7 +94,18 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    return None
+    is_num = False
+    num = input('Please enter a number')
+
+    while is_num == False:
+        try:
+            float(num)
+            print(num)
+            is_num = True
+        except ValueError:
+            num = input('please guess a number')
+
+    return num
 
 
 def super_asker(low, high):
@@ -105,7 +116,14 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    return None
+
+    user_input = input('Please enter a number')
+    num = not_number_rejector(user_input)
+    final_num = stubborn_asker(low, high)
+
+
+
+    return final_num
 
 
 if __name__ == "__main__":
