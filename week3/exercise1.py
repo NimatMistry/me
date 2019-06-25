@@ -3,7 +3,7 @@
 
 Modify each function until the tests pass.
 """
-
+import math 
 
 def loop_ranger(start, stop=None, step=1):
     """Return a list of numbers between start and stop in steps of step.
@@ -26,7 +26,28 @@ def lone_ranger(start, stop, step):
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    return None
+    
+    #num_list = []
+    #r = math.floor(stop/step)
+    #if step > 0:
+    #for i in range(r):
+    #    if i < stop:
+    #        num = start + step*i
+    #        num_list.append(num)
+    
+    #else:
+    #    for i in range(stop):
+    #        if i > stop:
+    #            num = start + step*i
+     #           num_list.append(num)
+    
+    
+    num_list = []
+
+    for i in range(start,stop,step):
+        num_list.append(i)
+
+    return num_list
 
 
 def two_step_ranger(start, stop):
@@ -39,7 +60,8 @@ def two_step_ranger(start, stop):
 
     for i in range(start,stop,2):
         num_list.append(i)
-        
+
+    print (num_list)    
     return num_list
  
 
