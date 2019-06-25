@@ -74,7 +74,17 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    return None
+
+    guess = False
+    num = int(input('Please enter a number'))
+
+    while guess == False:
+        if num < high and num > low:
+            #print('Well done, you got it')
+            guess = True
+        else:
+            num = int(input('please guess another number'))
+    return num
 
 
 def not_number_rejector(message):
