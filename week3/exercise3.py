@@ -11,13 +11,13 @@ def not_number_rejector(message):
     is_num = False
     num = input(message)
 
-    
-
+# Check that the input is not NONE
     while is_none == False:
       if num == None:
         print('Please input a number ')
         num = input(message)
       else:
+        # Check that the input is a number
         while is_none == False:
             try:
                 float(num)
