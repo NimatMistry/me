@@ -64,7 +64,6 @@ def advancedGuessingGame():
     
     print('Great you have enetered ' + str(lower_bound))
 
-
     # Get the upper bound
     upper_bound = not_number_rejector(str('Please pick a number for the upper bound '))
 
@@ -83,7 +82,6 @@ def advancedGuessingGame():
     print('Please guess a number between ' + str(lower_bound) + ' and ' + str(upper_bound))
 
 
-
     # Ask plater to guess a number 
     num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
 
@@ -95,14 +93,10 @@ def advancedGuessingGame():
     while in_bounds == False:
       if int(num_guessed) > int(lower_bound) and int(num_guessed) < int(upper_bound):
         in_bounds = True
-      elif int(num_guessed) <= int(lower_bound):
+      else:
         print ("Nope -_- Please stay inside the bounds")
         num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
-      elif int(num_guessed) >= int(upper_bound):
-        print ("Nope -_- Please stay inside the bounds")
-        num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
-
-
+     
 
 
     # Pick a random number for the player to guess 
