@@ -116,29 +116,3 @@ def advancedGuessingGame():
 if __name__ == "__main__":
     print(advancedGuessingGame())
 
-
-"""
-# Turn off from here 
-    print("\nWelcome to the guessing game!")
-    print("A number between 0 and _ ?")
-    upperBound = input("Enter an upper bound: ")
-    print("OK then, a number between 0 and {} ?".format(upperBound))
-    upperBound = int(upperBound)
-
-    actualNumber = random.randint(0, upperBound)
-
-    guessed = False
-
-    while not guessed:
-        guessedNumber = int(input("Guess a number: "))
-        print("You guessed {},".format(guessedNumber),)
-        if guessedNumber == actualNumber:
-            print("You got it!! It was {}".format(actualNumber))
-            guessed = True
-        elif guessedNumber < actualNumber:
-            print("Too small, try again :'(")
-        else:
-            print("Too big, try again :'(")
-    return "You got it!"
-
-    """
