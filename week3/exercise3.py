@@ -95,18 +95,13 @@ def advancedGuessingGame():
     while in_bounds == False:
       if int(num_guessed) > int(lower_bound) and int(num_guessed) < int(upper_bound):
         in_bounds = True
-      elif int(num_guessed) < int(lower_bound):
+      elif int(num_guessed) <= int(lower_bound):
         print ("Nope -_- Please stay inside the bounds")
         num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
-      elif int(num_guessed) > int(upper_bound):
+      elif int(num_guessed) >= int(upper_bound):
         print ("Nope -_- Please stay inside the bounds")
         num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
-      elif int(num_guessed) == int(upper_bound):
-        print ("Nope -_- Please stay inside the bounds")
-        num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))    
-      elif int(num_guessed) == int(lower_bound):
-        print ("Nope -_- Please stay inside the bounds")
-        num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
+
 
 
 
