@@ -52,17 +52,22 @@ def advancedGuessingGame():
     Remember to think modular. Try to keep your functions small and single
     purpose if you can!
     """
+
+
     # Start the game 
     print('Welcome to the guessing game !')
     print('Lets start by picking the range for the number')
+
 
     # Get the lower bound
     lower_bound = not_number_rejector(str('Please pick the lower bound '))
     
     print('Great you have enetered ' + str(lower_bound))
 
+
     # Get the upper bound
     upper_bound = not_number_rejector(str('Please pick a number for the upper bound '))
+
 
     # Make sure the upper bounds is a larger number than the lower bounds + 1 so there is whole number in 
     # between to guess :)
@@ -103,8 +108,11 @@ def advancedGuessingGame():
         print ("Nope -_- Please stay inside the bounds")
         num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
 
+
+
     # Pick a random number for the player to guess 
-    num_selected = random.randint(int(lower_bound), int(upper_bound))
+    num_selected = random.randint(int(lower_bound) +1 , int(upper_bound) -1)
+
 
 
     # Creat a loop to check if the number guessed is correct 
@@ -120,6 +128,7 @@ def advancedGuessingGame():
       else:
         print('Sorry the number {} is too big'.format(num_guessed))
         num_guessed = not_number_rejector(str("Please guess another number between {} and {} ".format(lower_bound, upper_bound)))
+
 
 
     return "You got it!"
