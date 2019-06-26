@@ -7,15 +7,25 @@ import random
 
 def not_number_rejector(message):
     
+    is_none = False
     is_num = False
     num = input(message)
-    while is_num == False:
-        try:
-            float(num)
-            is_num = True
-        except Exception:
-            print('This is not a number, Please try again ')
-            num = input(message)
+
+    
+
+    while is_none == False:
+      if num == None:
+        print('Please input a number ')
+        num = input(message)
+      else:
+        while is_none == False:
+            try:
+                float(num)
+                is_num = True
+            except Exception:
+                print('This is not a number, Please try again ')
+                num = input(message)
+        is_none == True
 
     return num
 
