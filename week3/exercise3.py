@@ -8,7 +8,7 @@ import random
 def not_number_rejector(message):
     
     is_none = False
-    is_num = False
+    is_num = True
     num = input(message)
 
 # Check that the input is not NONE
@@ -17,15 +17,18 @@ def not_number_rejector(message):
         print('Please input a number ')
         num = input(message)
       else:
-        # Check that the input is a number
-        while is_none == False:
-            try:
-                float(num)
-                is_num = True
-            except Exception:
-                print('This is not a number, Please try again ')
-                num = input(message)
-        is_none == True
+        is_num = False
+        is_none = True
+        
+
+    while is_num == False:
+        try:
+            int(num)
+            is_num = True
+        except Exception:
+            print('This is not a number, Please try again ')
+            num = input(message)
+        
 
     return num
 
@@ -54,26 +57,23 @@ def advancedGuessingGame():
     print('Lets start by picking the range for the number')
 
     # Get the lower bound
-    msg1 = 'Please pick the lower bound '
-    lower_bound = not_number_rejector(msg1)
+    lower_bound = not_number_rejector(str('Please pick the lower bound '))
     
     print('Great you have enetered ' + str(lower_bound))
 
     # Get the upper bound
-    msg2 = 'Please pick a number for the upper bound '
-    upper_bound = not_number_rejector(msg2)
+    upper_bound = not_number_rejector(str('Please pick a number for the upper bound '))
 
     # Make sure the upper bounds is a larger number than the lower bounds + 1 so there is whole number in 
     # between to guess :)
-    is_smaller = False
-    msg3 = 'Please select a numer higer than ' + str(int(lower_bound) + 1) + ' ' 
+    is_smaller = False 
     
     while is_smaller == False:
       if int(upper_bound) > int(lower_bound) + 1:
         print('Cool')
         is_smaller = True
       else:
-        upper_bound = not_number_rejector(msg3)
+        upper_bound = not_number_rejector(str('Please select a numer higer than ' + str(int(lower_bound) + 1) + ' '))
     
     print('Please guess a number between ' + str(lower_bound) + ' and ' + str(upper_bound))
 
@@ -96,8 +96,12 @@ def advancedGuessingGame():
       elif int(num_guessed) > int(upper_bound):
         print ("Nope -_- Please stay inside the bounds")
         num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
-    
-
+      elif int(num_guessed) == int(upper_bound):
+        print ("Nope -_- Please stay inside the bounds")
+        num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))    
+      elif int(num_guessed) == int(lower_bound):
+        print ("Nope -_- Please stay inside the bounds")
+        num_guessed = not_number_rejector(str("Please guess a number between {} and {} ".format(lower_bound, upper_bound)))
 
     # Pick a random number for the player to guess 
     num_selected = random.randint(int(lower_bound), int(upper_bound))
@@ -116,7 +120,6 @@ def advancedGuessingGame():
       else:
         print('Sorry the number {} is too big'.format(num_guessed))
         num_guessed = not_number_rejector(str("Please guess another number between {} and {} ".format(lower_bound, upper_bound)))
-
 
 
     return "You got it!"
