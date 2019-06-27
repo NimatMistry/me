@@ -27,25 +27,18 @@ def lone_ranger(start, stop, step):
     Look up the docs for range() and wrap it in a 1:1 way
     """
     
-    #num_list = []
-    #r = math.floor(stop/step)
-    #if step > 0:
-    #for i in range(r):
-    #    if i < stop:
-    #        num = start + step*i
-    #        num_list.append(num)
-    
-    #else:
-    #    for i in range(stop):
-    #        if i > stop:
-    #            num = start + step*i
-     #           num_list.append(num)
-    
-    
-    num_list = []
 
-    for i in range(start,stop,step):
-        num_list.append(i)
+    num_list = []
+    num = start
+
+    is_stop = False
+
+    while is_stop == False:
+        num_list.append(num)
+        num += step
+        if int(num) >= stop:
+            is_stop = True
+
 
     return num_list
 
