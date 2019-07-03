@@ -36,7 +36,15 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName": None, "password": None, "postcodePlusID": None}
+
+    pc_and_id = int(data["results"][0]["location"]["postcode"]) + int(data["results"][0]["id"]["value"])
+
+    ln = data["results"][0]["name"]["last"]
+    pw = data["results"][0]["login"]["password"]
+
+    #print(ln, pw, pc_and_id)
+
+    return {"lastName": ln , "password": pw , "postcodePlusID": pc_and_id }
 
 
 def wordy_pyramid():
@@ -74,7 +82,50 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    pass
+    word_list = []
+
+    key = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
+
+    template = "http://api.wordnik.com/v4/words.json/randomWords?api_key={key}&minLength={minLength}&maxLength={maxLength}&limit={limit}"
+    
+    
+    w_min_len = int(3)
+    w_max_len = int(20)
+    step = int(2)
+   
+    word_length = 3
+
+    decend = True
+    ascend = True
+
+    
+
+    
+    while decend == True:
+        if word_length <= w_max_len:
+            url = template.format(base = template, minLength = word_length, maxLength = word_length, limit=1, key=key)
+            r = requests.get(url)
+            keep = json.loads(r.text)
+            #word_list.append(keep[0]["word"])
+            word_list.append(keep)
+            word_length += step
+        else:
+            decend = False
+
+    while decend == False and ascend == True:
+        if word_length >= w_min_len:
+            url = template.format(base=template, minLength=word_length, maxLength=word_length, limit=1, key=key)
+            r = requests.get(url)
+            keep = json.loads(r.text)
+            #word_list.append(keep[0]["word"])
+            word_list.append(keep)
+            word_length -= step
+        else:
+            ascend = False
+
+    print('word list')
+    return word_list
+
 
 
 def pokedex(low=1, high=5):
@@ -93,11 +144,41 @@ def pokedex(low=1, high=5):
     """
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
 
-    url = template.format(base=base, id=5)
-    r = requests.get(url)
-    if r.status_code is 200:
-        the_json = json.loads(r.text)
-    return {"name": None, "weight": None, "height": None}
+    poke_info = {"name" : None, "height" : None, "weight" : None}
+
+    dex = []
+
+
+    while low <= high:
+        url = template.format(base = template, id = low)
+        r = requests.get(url)
+        # status code 200 means that the site is responding and that there is no error 
+        if r.status_code is 200:
+
+            the_json = json.loads(r.text)
+
+            poke_info["name"] = the_json["name"]
+            poke_info["height"] = the_json["height"]
+            poke_info["weight"] = the_json["weight"]
+
+            dex.append(poke_info.copy())
+
+            low += 1
+
+
+    index = None
+    temp = 0 
+
+    for i in range(len(dex)):
+        if dex[i]["height"] > temp:
+            temp = dex[i]["height"]
+            index = i
+
+    p_name = dex[index]["name"]
+    p_height = dex[index]["height"]
+    p_weight = dex[index]["weight"]
+
+    return {"name": p_name, "weight": p_weight, "height": p_height}
 
 
 def diarist():
