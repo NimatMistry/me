@@ -123,7 +123,7 @@ def wordy_pyramid():
         else:
             ascend = False
 
-    print('word list')
+    #print('word list')
     return word_list
 
 
