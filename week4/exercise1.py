@@ -195,7 +195,29 @@ def diarist():
          the test will have nothing to look at.
     TIP: this might come in handy if you need to hack a 3d print file in the future.
     """
+    # Open and read gcode file 
+    laser_info = open(LOCAL + "/Trispokedovetiles(laser).gcode").read()
+
+    # Make a variable for the command / text we need to find 
+    on_off = "M10 P1"
+
+    # Search for the command / text  using .count
+    on_off_count = laser_info.count(on_off)
+
+    # Test print to figure out if its working 
+    #print("on off count")
+    #print(on_off_count)
+    
+    # Open lasers.pew file and the '+' after the 'w' means if the file does not exist, create one 
+    new_doc = open(LOCAL + "/lasers.pew", "w+")
+
+    # Wite the count to the file 
+    new_doc.write("{}" .format(str(on_off_count)))
+    # Close the file so there are no problems in the future
+    new_doc.close()
+
     pass
+
 
 
 if __name__ == "__main__":
@@ -211,3 +233,4 @@ if __name__ == "__main__":
             print(e)
     if not os.path.isfile("lasers.pew"):
         print("diarist did not create lasers.pew")
+ 
