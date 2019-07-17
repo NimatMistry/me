@@ -84,7 +84,8 @@ def wordy_pyramid():
     """
     word_list = []
 
-    key = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
+    key = "ex31lwi5i5ayr1sewj6vxf2ua8uezames3q7kytkj72xma6fy"
+    #"a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
 
     template = "http://api.wordnik.com/v4/words.json/randomWords?api_key={key}&minLength={minLength}&maxLength={maxLength}&limit={limit}"
     
@@ -106,6 +107,7 @@ def wordy_pyramid():
             url = template.format(base = template, minLength = word_length, maxLength = word_length, limit=1, key=key)
             r = requests.get(url)
             keep = json.loads(r.text)
+            print(keep)
             #word_list.append(keep[0]["word"])
             word_list.append(keep)
             word_length += step
