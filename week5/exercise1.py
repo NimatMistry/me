@@ -24,31 +24,31 @@ you'll need to figure out for yourself what to do.
 # move on, and eventually delete this function. (And this comment!)
 
 
-def do_bunch_of_bad_things():
-    print("Getting ready to start in 9")
-    print("Getting ready to start in 8")
-    print("Getting ready to start in 7")
-    print("Getting ready to start in 6")
-    print("Getting ready to start in 5")
-    print("Getting ready to start in 4")
-    print("Getting ready to start in 3")
-    print("Getting ready to start in 2")
-    print("Getting ready to start in 1")
-    print("Let's go!")
+# def do_bunch_of_bad_things():
+#     print("Getting ready to start in 9")
+#     print("Getting ready to start in 8")
+#     print("Getting ready to start in 7")
+#     print("Getting ready to start in 6")
+#     print("Getting ready to start in 5")
+#     print("Getting ready to start in 4")
+#     print("Getting ready to start in 3")
+#     print("Getting ready to start in 2")
+#     print("Getting ready to start in 1")
+#     print("Let's go!")
 
-    triangle = {"base": 3, "height": 4}
-    triangle["hypotenuse"] = triangle["base"] ** 2 + triangle["height"] ** 2
-    print("area = " + str((triangle["base"] * triangle["height"]) / 2))
-    print("side lengths are:")
-    print("base: {}".format(triangle["base"]))
-    print("height: {}".format(triangle["height"]))
-    print("hypotenuse: {}".format(triangle["hypotenuse"]))
+#     triangle = {"base": 3, "height": 4}
+#     triangle["hypotenuse"] = triangle["base"] ** 2 + triangle["height"] ** 2
+#     print("area = " + str((triangle["base"] * triangle["height"]) / 2))
+#     print("side lengths are:")
+#     print("base: {}".format(triangle["base"]))
+#     print("height: {}".format(triangle["height"]))
+#     print("hypotenuse: {}".format(triangle["hypotenuse"]))
 
-    another_hyp = 5 ** 2 + 6 ** 2
-    print(another_hyp)
+#     another_hyp = 5 ** 2 + 6 ** 2
+#     print(another_hyp)
 
-    yet_another_hyp = 40 ** 2 + 30 ** 2
-    print(yet_another_hyp)
+#     yet_another_hyp = 40 ** 2 + 30 ** 2
+#     print(yet_another_hyp)
 
 
 # return a list of countdown messages, much like in the bad function above.
@@ -198,26 +198,36 @@ def tell_me_about_this_right_triangle(facts_dictionary):
     # Make sure you are selecting the right diagram depending on the aspect 
     if facts_dictionary["aspect"] == "tall":
         diagram = tall.format(**facts_dictionary)
+
     elif facts_dictionary["aspect"] == "wide":
         diagram = wide.format(**facts_dictionary)
+
     else:
         diagram = equal.format(**facts_dictionary)
 
 
     facts = pattern.format(**facts_dictionary)
 
-    # Return the diagrama and the facts 
-    return(diagram + "/n" + facts)
+    # Return the diagram and the facts 
+    return diagram + "/n" + facts
 
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
+   
+    facts = get_triangle_facts(base, height, units="mm")
+    diagram = tell_me_about_this_right_triangle(facts)
+    
+
     if return_diagram and return_dictionary:
-        return None
+        return {"diagram": diagram, "facts": facts}
+   
     elif return_diagram:
-        return None
+        return diagram
+   
     elif return_dictionary:
-        return None
+        return facts
+   
     else:
         print("You're an odd one, you don't want anything!")
 
@@ -253,11 +263,50 @@ def wordy_pyramid(api_key):
 
 
 def get_a_word_of_length_n(length):
-    pass
+    import requests
+
+    baseURL = (
+        "http://api.wordnik.com/v4/words.json/randomWords?"
+        "api_key={api_key}"
+        "&minLength={length}"
+        "&maxLength={length}"
+        "&limit=1"
+    )
+
+    pyramid_list = []
+
+    url = baseURL.format(api_key="",length=length)
+    r = requests.get(url)
+    if r.status_code is 200:
+        message = r.json()[0]["word"]
+        pyramid_list.append(message)
+    else:
+        print("failed a request", r.status_code)
 
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
+    import requests
+
+    baseURL = (
+        "http://api.wordnik.com/v4/words.json/randomWords?"
+        "api_key={api_key}"
+        "&minLength={length}"
+        "&maxLength={length}"
+        "&limit=1"
+    )
+
+    pyramid_list = []
+
+    for i in range(len(list_of_lengths)):
+        url = baseURL.format(api_key="", length=list_of_lengths[i])
+        r = requests.get(url)
+        if r.status_code is 200:
+            message = r.json()[0]["word"]
+            pyramid_list.append(message)
+        else:
+            print("failed a request", r.status_code, i)
+
+    return pyramid_list
 
 
 if __name__ == "__main__":
