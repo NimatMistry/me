@@ -1,4 +1,7 @@
 # -*- coding: UTF-8 -*-
+
+import math 
+
 """Refactoring.
 
 This exercise contains a complete and working example, but it's very poorly written.
@@ -19,6 +22,8 @@ you'll need to figure out for yourself what to do.
 # This is a terrible function. The rest of the functions in this file do a
 # much better job of what it's trying to do. Once you've has a little look,
 # move on, and eventually delete this function. (And this comment!)
+
+
 def do_bunch_of_bad_things():
     print("Getting ready to start in 9")
     print("Getting ready to start in 8")
@@ -49,7 +54,16 @@ def do_bunch_of_bad_things():
 # return a list of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    pass
+
+    # Create a loop to print the message
+    # Use start and start and stop for the range function
+    for i in range(int(start),int(stop)):
+        # Print the message and the number
+        print(str(message) + " " + str(i))
+
+    # print the completion message 
+    print(completion_message)
+    # pass
 
 
 # TRIANGLES
@@ -62,32 +76,68 @@ def countdown(message, start, stop, completion_message):
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
 def calculate_hypotenuse(base, height):
-    pass
+    
+    # Calcuate the hypotenuse
+    hyp = math.sqrt((base ** 2) + (height ** 2))
+    
+    # Return the hypotenuse
+    return(hyp)
 
 
 def calculate_area(base, height):
-    pass
+
+    # Calculate the area
+    area = (base * height) / 2
+
+    # Return the area 
+    return(area)
 
 
 def calculate_perimeter(base, height):
-    pass
+
+    # Calulate hypotenuse 
+    hyp = calculate_hypotenuse(base, height)
+
+    # Calulate perimeter
+    peri = base + height + hyp
+
+    # Return perimeter
+    return(peri)
+    
 
 
 def calculate_aspect(base, height):
-    pass
+
+    aspect = ""
+    # If the height is greater than the base 
+    if height > base:
+        # Return Tall
+        aspect = "tall"
+    # If the base id greater than the height 
+    elif base > height:
+        # Return Wide
+        aspect = "wide"
+    # For all other intances 
+    else:
+        # Retun Equal
+        aspect = "equal"
+    
+    return(aspect)
+    
 
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
+    # Using the already defined funtions giving the dictionary keys their values
     return {
-        "area": None,
-        "perimeter": None,
-        "height": None,
-        "base": None,
-        "hypotenuse": None,
-        "aspect": None,
-        "units": None,
+        "area": calculate_area(base, height),
+        "perimeter": calculate_perimeter(base, height),
+        "height": height,
+        "base": base,
+        "hypotenuse": calculate_hypotenuse(base, height),
+        "aspect": calculate_aspect(base, height),
+        "units": units,
     }
 
 
@@ -108,6 +158,7 @@ def get_triangle_facts(base, height, units="mm"):
 # but with the values and shape that relate to the specific
 # triangle we care about.
 def tell_me_about_this_right_triangle(facts_dictionary):
+
     tall = """
             {height}
             |
@@ -138,7 +189,26 @@ def tell_me_about_this_right_triangle(facts_dictionary):
         "This is a {aspect} triangle.\n"
     )
 
+    # Calculate the area and perimeter
+    # Find the aspect 
+    area = calculate_area
+    aspect = calculate_aspect
+    perimeter = calculate_perimeter
+
+    # Make sure you are selecting the right diagram depending on the aspect 
+    if facts_dictionary["aspect"] == "tall":
+        diagram = tall.format(**facts_dictionary)
+    elif facts_dictionary["aspect"] == "wide":
+        diagram = wide.format(**facts_dictionary)
+    else:
+        diagram = equal.format(**facts_dictionary)
+
+
     facts = pattern.format(**facts_dictionary)
+
+    # Return the diagrama and the facts 
+    return(diagram + "/n" + facts)
+
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
