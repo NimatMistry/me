@@ -82,12 +82,13 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
+    """
     word_list = []
 
     key = "ex31lwi5i5ayr1sewj6vxf2ua8uezames3q7kytkj72xma6fy"
     #"a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
 
-    template = "http://api.wordnik.com/v4/words.json/randomWords?api_key={key}&minLength={minLength}&maxLength={maxLength}&limit={limit}"
+    template = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={word_length}"
     
     
     w_min_len = int(3)
@@ -100,11 +101,9 @@ def wordy_pyramid():
     ascend = True
 
     
-
-    
     while decend == True:
         if word_length <= w_max_len:
-            url = template.format(base = template, minLength = word_length, maxLength = word_length, limit=1, key=key)
+            url = template.format(wordlength = word_length)
             r = requests.get(url)
             keep = json.loads(r.text)
             print(keep)
@@ -116,7 +115,7 @@ def wordy_pyramid():
 
     while decend == False and ascend == True:
         if word_length >= w_min_len:
-            url = template.format(base=template, minLength=word_length, maxLength=word_length, limit=1, key=key)
+            url = template.format(wordlength = word_length)
             r = requests.get(url)
             keep = json.loads(r.text)
             #word_list.append(keep[0]["word"])
@@ -125,7 +124,51 @@ def wordy_pyramid():
         else:
             ascend = False
 
-    #print('word list')
+    print('word list')
+    print ("test")
+    """
+
+    word_list = []
+
+    address = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={wlen}"
+
+
+    wmin = int(3)
+    wmax = int(20)
+    step = int(2)
+
+    """
+    url = address.format(base = template, wlen=wlen)
+    r = requests.get(url)
+    print (r)
+    word = r.content
+    print(word)
+    """
+
+  
+    for i in range(wmin, wmax, step):
+        url = address.format(base = address, wlen = i)
+        r = requests.get(url)
+        if r.status_code == 200:
+            word = r.content
+            word = str(word)
+            no_b = word[2:-1]
+            print(no_b)
+            word_list.append(no_b)
+
+
+    
+    for i in range(wmax, wmin, -step):
+        url = address.format(base = address, wlen = i)
+        r = requests.get(url)
+        if r.status_code == 200:
+            word = r.content
+            word = str(word)
+            no_b = word[2:-1]
+            print(no_b)
+            word_list.append(no_b)
+
+    print(word_list)
     return word_list
 
 
