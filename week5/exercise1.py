@@ -200,38 +200,65 @@ def triangle_master(base, height, return_diagram=False, return_dictionary=False)
     else:
         print("You're an odd one, you don't want anything!")
 
-
-def wordy_pyramid():
+def get_words(start, stop, step):
+    
     import requests
 
     baseURL = ("https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={wlen}")
+    
+    words = []
 
+    for i in range(start, stop, step):
+        url = baseURL.format(wlen = i)
+        r = requests.get(url)
+        if r.status_code is 200:
+            message = r.content
+            if message is None:
+                pass
+            else:
+                message = str(message)
+                no_b = message[2:-1]
+                words.append(no_b)
+
+    return words
+
+
+def wordy_pyramid():
+    # import requests
+
+    # baseURL = ("https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={wlen}")
+
+
+
+
+    # for i in range(3, 21, 2):
+    #     url = baseURL.format(wlen = i)
+    #     r = requests.get(url)
+    #     if r.status_code is 200:
+    #         message = r.content
+    #         if message is None:
+    #             pass
+    #         else:
+    #             message = str(message)
+    #             no_b = message[2:-1]
+    #             pyramid_list.append(no_b)
+
+    # for i in range(20, 3, -2):
+    #     url = baseURL.format(wlen = i)
+    #     r = requests.get(url)
+    #     if r.status_code is 200:
+    #         message = r.content
+    #         if message is None:
+    #             pass
+    #         else:
+    #             message = str(message)
+    #             no_b = message[2:-1]
+    #             pyramid_list.append(no_b)
 
     pyramid_list = []
 
-    for i in range(3, 21, 2):
-        url = baseURL.format(wlen = i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.content
-            if message is None:
-                pass
-            else:
-                message = str(message)
-                no_b = message[2:-1]
-                pyramid_list.append(no_b)
-
-    for i in range(20, 3, -2):
-        url = baseURL.format(wlen = i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.content
-            if message is None:
-                pass
-            else:
-                message = str(message)
-                no_b = message[2:-1]
-                pyramid_list.append(no_b)
+    pyramid_list.extend(get_words(3, 21, 2))
+    pyramid_list.extend(get_words(20, 3, -2))
 
     return pyramid_list
 
