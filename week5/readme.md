@@ -31,3 +31,4 @@
 
 return None is usefull 
 maybe sometimes check the tests.py file to see what is expected a string or a list ?
+check the tests to see what is being fed in is it a number?

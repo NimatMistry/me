@@ -237,7 +237,7 @@ def wordy_pyramid():
 
 
 def get_a_word_of_length_n(length):
-    
+
     import requests
 
     baseURL = ("https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={wlen}")
