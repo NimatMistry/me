@@ -26,7 +26,7 @@ def countdown(message, start, stop, completion_message):
 
     # Create a loop to prnt the message
     # Use start and start and stop for the range function
-    for i in range(int((start-stop)+1),0, -1):
+    for i in range(start,stop-1, -1):
         # Prnt the message and the number
         print(str(message) + " " + str(i))
 
