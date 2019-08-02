@@ -170,18 +170,16 @@ def make_filler_text_dictionary():
    
 
 
-    wordlist = []
+    
 
     for i in range(3,8):
         words = []
-        url = url.format(leng = i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            for number in range (3):
+        for number in range (3):
+            url = url.format(leng = i)
+            r = requests.get(url)
+            if r.status_code is 200:
                 word = r.text
                 words.append(word)
-                print(word)
-                wordlist = words
         my_list.update({i : words})
     
 
