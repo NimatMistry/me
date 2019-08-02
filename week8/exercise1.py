@@ -107,10 +107,28 @@ def best_letter_for_pets():
     TIP: return just a letter, not the list of animals.
     """
     import string
-
+    
+    # letters = [
+    #         "a","b","c","d","e","f","g","h","i","j","k","l","m",
+    #         "n","o","p","q","r","s","t","u","v","w","x","y","z",]
+    
     the_alphabet = string.ascii_lowercase
+   
+    list_length = 0
 
-    return ""
+    p_letter = []
+
+    for aplh in the_alphabet:
+        pet_list = pet_filter(aplh)
+        length = len(pet_list)
+        print (length)
+        if length >= list_length:
+            list_length = length
+            p_letter = str(aplh)
+    
+    print(list_length)
+    print(p_letter)
+    return p_letter
 
 
 def make_filler_text_dictionary():
