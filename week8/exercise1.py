@@ -126,8 +126,9 @@ def best_letter_for_pets():
             list_length = length
             p_letter = str(aplh)
     
-    print(list_length)
-    print(p_letter)
+    # print(list_length)
+    # print(p_letter)
+
     return p_letter
 
 
@@ -158,7 +159,48 @@ def make_filler_text_dictionary():
 
     import requests
 
-    return {}
+    url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={leng}"
+
+
+    # # wordFreqDic.update( {'before' : 23} )
+    my_list = {}
+
+
+
+   
+
+
+    wordlist = []
+
+    for i in range(3,8):
+        words = []
+        url = url.format(leng = i)
+        r = requests.get(url)
+        if r.status_code is 200:
+            for number in range (3):
+                word = r.text
+                words.append(word)
+                print(word)
+                wordlist = words
+        my_list.update({i : words})
+    
+
+
+    # dicts = {}
+    # for i in range(3,7):
+    #     words = []
+    #     for i in range(i):
+    #         url = url.format(leng = i)
+    #         r = requests.get(url)
+    #         if r.status_code is 200:
+    #             word = r.text
+    #             words.append(word)
+    #     print(values)
+    #     for x in words:
+    #         dicts[i] = x
+
+    print(my_list)
+    return my_list
 
 
 def random_filler_text(number_of_words=200):
