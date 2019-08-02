@@ -1,3 +1,4 @@
+
 # -*- coding: UTF-8 -*-
 """
 I'm in UR exam.
@@ -17,7 +18,8 @@ def greet(name="Towering Timmy"):
     return a string of "Hello" and the name argument.
     E.g. if given as "Towering Timmy" it should return "Hello Towering Timmy"
     """
-    return ""
+    
+    return "Hello " + str(name)
 
 
 def three_counter(input_list=[1, 4, 3, 5, 7, 1, 3, 2, 3, 3, 5, 3, 7]):
@@ -26,6 +28,10 @@ def three_counter(input_list=[1, 4, 3, 5, 7, 1, 3, 2, 3, 3, 5, 3, 7]):
     TIP: the test will use a different input_list, so don't just return 5
     """
     count = 0
+
+    for num in input_list:
+        if num == 3:
+            count += 1
 
     return count
 
